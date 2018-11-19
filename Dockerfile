@@ -5,7 +5,7 @@ RUN  apt-get install -y apt-transport-https ca-certificates curl software-proper
   apt-get update; \
   apt-get install -y docker-ce; \
   systemctl status docker; \
-  systemctl enable docker; \
   curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose; \
   chmod +x /usr/local/bin/docker-compose; \
   docker-compose --version
+CMD systemctl start docker 
