@@ -1,11 +1,11 @@
+FROM docker:stable-dind as docker
 FROM cypress/browsers:latest
-RUN  apt-get install -y apt-transport-https ca-certificates curl software-properties-common; \
-  curl -fsSL https://download.docker.com/linux/ubuntu/gpg |  apt-key add -; \
-  add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian jessie stable"; \
-  apt-get update; \
-  apt-get install -y docker-ce; \
-  systemctl status docker; \
+
+COPY --from=docker /usr/local/bin/* /usr/local/bin/
+
+RUN apt-get install -y iptables; \
   curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose; \
   chmod +x /usr/local/bin/docker-compose; \
-  docker-compose --version
-CMD systemctl start docker 
+  docker-compose --version;
+
+ENTRYPOINT ["usr/local/bin/dockerd-entrypoint.sh"]
