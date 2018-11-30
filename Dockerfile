@@ -8,4 +8,4 @@ RUN apt-get install -y iptables aufs-tools; \
   chmod +x /usr/local/bin/docker-compose; \
   docker-compose --version;
 
-ENTRYPOINT ["usr/local/bin/dockerd-entrypoint.sh"]
+ENTRYPOINT ["/usr/local/bin/dockerd-entrypoint.sh"]
