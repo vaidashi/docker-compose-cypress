@@ -1,7 +1,7 @@
 FROM docker/compose:1.22.0
 
 # Installs cypress dependencies
-RUN apk add --update nodejs nodejs-npm curl gtk+2.0 libnotify gconf nss xvfb python
+RUN apk add --update nodejs nodejs-npm curl gtk+2.0 libnotify gconf nss xvfb python g++ make
 
 RUN npm install -g npm@6.4.1 strip-ansi yarn
 
